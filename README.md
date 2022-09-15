@@ -118,3 +118,16 @@ Used filter function from Exceel to get bird eye of data from all files. Accordi
 - According filter, there are start_time, 01 - Rental Details Local Start Time, started_at and end_time,01 - Rental Details Local End Time,  ended_at columns have the same timestamp format: ‘dd-mm-yyyy hh:mm:ss’ in all files.
 
 Next for merging all files I used python, CSV files have  large data size. It was easy and fast with python. 
+Python script is at the [link](https://github.com/AyushSharma97666/python_1/blob/main/python.py)
+
+- imported 2019_Q2, 2019_Q3 and 2019_Q4 csv files into dataframe 
+- renamed 2019_Q4 dataframe, all the 3 datafranme have 12 columns and same datatype but name is different in 2019_Q4 
+- some columns are only in these 3 files but not in 2020_Q1 so removed those columns such as bikeid.  gender , birthyear, tripduration 
+- concated these 3 dataframe into one 
+- imported 2020_Q1 files and some columns are different than concated dataframe, so droped those columns 
+- concated these 2020_Q1 with previous dataframe 
+- created new column with trip_time from start and end time 
+- created new column with day of week from star_time column 
+
+
+## An
