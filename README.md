@@ -128,6 +128,7 @@ Python script is at the [link](https://github.com/AyushSharma97666/python_1/blob
 - concated these 2020_Q1 with previous dataframe 
 - created new column with trip_time from start and end time 
 - created new column with day of week from star_time column 
+- saved all last 12 months data in one csv file 
 
 
 ## An
