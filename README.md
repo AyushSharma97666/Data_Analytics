@@ -131,4 +131,21 @@ Python script is at the [link](https://github.com/AyushSharma97666/python_1/blob
 - saved all last 12 months data in one csv file 
 
 
-## An
+## Analyze
+
+for starting analysics we have some question to start 
+1. Percentage of annual and non annual user of cyclistic
+2. Quarterly growth in user 
+3. Number of user by day of week 
+4. Average trip 
+5. Most used station
+
+The final_year.csv size is more than 100MB so we are useing BigQuery for analysics.
+1. Percentage of annual and non annual user of cyclistic  
+select   
+usertype,  
+round(count(*) *100/ (select   
+count(*)  
+from lithe-vector-361209.case_study_1.prepare), 0) as per  
+from lithe-vector-361209.case_study_1.prepare  
+group by usertype   
