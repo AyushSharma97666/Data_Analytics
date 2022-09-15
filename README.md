@@ -138,7 +138,6 @@ for starting analysics we have some question to start
 2. Quarterly growth in user 
 3. Number of user by day of week 
 4. Average trip 
-5. Most used station
 
 The final_year.csv size is more than 100MB so we are useing BigQuery for analysics.
 1. Percentage of annual and non annual user of cyclistic  
@@ -148,4 +147,76 @@ round(count(*) *100/ (select
 count(*)  
 from lithe-vector-361209.case_study_1.prepare), 0) as per  
 from lithe-vector-361209.case_study_1.prepare  
-group by usertype   
+group by usertype  
+
+
+![image](https://user-images.githubusercontent.com/110818513/190449828-2a6e927c-7072-4521-9e1b-1757360e7a57.png)
+
+
+Now we know that there 23% of user are not useing annual subscription. we know that annual subscription is more profitable than daily or one time pass. we have to convert these 23% user into annual subscribe.
+
+2. Quarterly growth in user
+ 
+To get last year user growth on quarterly basic we use below query     
+SELECT    
+ extract(quarter FROM date) as quarter,   
+ count(*) as count  
+FROM lithe-vector-361209.case_study_1.prepare    
+group by quarter  
+order by quarter   
+
+![image](https://user-images.githubusercontent.com/110818513/190447003-98fd571b-2bac-4c7b-a56e-e627a00158ed.png)
+
+there is good growth in number of user before 4th quarter then in 4th sudden fall is there 
+![image](https://user-images.githubusercontent.com/110818513/190449382-cfc852aa-f733-479f-ae98-215fda320f80.png)  
+
+3. Number of user by day of week
+Now we are looking number of user on different day of weeek for these we used below query   
+select   
+  day_of_week ,  
+  count(*) as count  
+from lithe-vector-361209.case_study_1.prepare   
+group by day_of_week   
+order by day_of_week  
+
+![image](https://user-images.githubusercontent.com/110818513/190451803-63b3b418-201a-4fa6-8d72-982d005e88e2.png)
+
+Note 0= monday and 6 = sunday 
+
+Now we are useing where cause to get more data inside on above query 
+firstly we are useing for annual subscriber, then on non subscriber
+
+![image](https://user-images.githubusercontent.com/110818513/190454394-5e92dd23-a646-4768-b912-71fbd45be616.png)
+![image](https://user-images.githubusercontent.com/110818513/190454463-77067566-cd67-4c69-a13c-0eedc548c05d.png)
+
+4. Average trip 
+for these we used below query   
+select  
+ usertype,   
+ avg(time_diff) as avg
+from  lithe-vector-361209.case_study_1.prepare 
+group by  usertype
+order by avg 
+
+![image](https://user-images.githubusercontent.com/110818513/190456758-85d99dfb-fbca-4a79-8448-5fced461cab1.png)
+
+
+In these we have used exceel for creating visualtion, after running query in BigQuery we getting result in csv files. It was easy and fast to use exceel for small data visualtion. you can also use r, power BI , tableau,etc for big data sizes.
+
+
+## Share 
+After looking into data we get following insides
+- Quarterly growth was reduced in 4th quarter and growh of annual and non annual subscriber are also have same effect.
+- Annual subscriber are useing on weekdays and non annual subscriber are on weekends
+- Non Annual subscriber are have more trip than annual subscriber it was 3 time more than annual 
+
+##  Act
+
+**Recommendations Based on Analysis**
+- Saturday and Sunday should be prioritised when it comes to scheduling ads for the digital online campaign.
+- Last quarter shows downward move in use of cyclistics, so we should use more marketing in that quarter.
+- Giving time limit on use of bikies to Non annual subscriber and no limit to annual subscriber reason is that instead of taking one day pass they will take annual subscription
+
+Thank you very much for your time, I hope you enjoyed the reading
+
+I would be very happy to read your comments and feedback
